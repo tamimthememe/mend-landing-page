@@ -1,0 +1,255 @@
+---
+description: Mend landing page (mendit.net) — stack, structure, locked copy, design system, motion slots, and rules for building from Figma via MCP
+globs: ["src/**/*.{ts,tsx,css}", "index.html"]
+alwaysApply: true
+---
+
+# Mend Landing Page — Project Rules
+
+## What this is
+A single-page waitlist landing site for **Mend**: automated design QA for AI-built apps.
+Mend crawls a live app, finds UI/UX issues, lets you review them (table or card view), and helps you ship complete.
+Primary audience: **product designers**. Secondary: startup founders.
+Domain: **mendit.net**. One page, anchor-linked sections. No routing library.
+
+The design is **already finished in Figma**. Your job is to implement it faithfully, not to redesign it.
+This is a design-QA product: the page itself is the proof of craft. Pixel accuracy, alignment, spacing consistency, and motion quality are the product pitch.
+
+## Stack (do not add to this without asking)
+- Vite + React 19 + TypeScript (strict)
+- Tailwind CSS v4 via `@tailwindcss/vite` (CSS-first config with `@theme` in `src/index.css`; no `tailwind.config.js` unless needed)
+- `motion` (Framer Motion) — import from `"motion/react"` — for web-native motion only
+- `lottie-react` — for vector animations exported from After Effects (Bodymovin)
+- Native `<video>` — for raster/PNG animations exported as MP4 (+ WebM when available)
+- No UI component library. No CSS-in-JS. No state library. No router.
+
+## Folder structure
+```
+src/
+  assets/
+    lottie/        # *.json — vector animations (hero components, panels, cursor bits)
+    video/         # *.mp4 / *.webm — raster animations (Scan/Audit/Ship screens)
+    posters/       # *.webp — first/last frame stills for videos (shown before load + reduced motion)
+    images/        # static images (founder photo, etc.)
+    icons/         # svg icons
+  components/
+    ui/            # Button, EmailCapture, Pill, Container, SectionHeading
+    motion/        # LottieSlot, VideoSlot, useInViewOnce, useReducedMotion helpers
+  sections/
+    Nav.tsx
+    Hero.tsx
+    HowItWorks.tsx
+    FigmaVsBuild.tsx
+    MendboardsBanner.tsx
+    FounderNote.tsx
+    FinalCta.tsx
+    Footer.tsx
+  content/
+    copy.ts        # ALL page copy lives here (see Locked copy). Components import from it.
+  lib/
+    waitlist.ts    # submit handler (Formspree stub)
+  App.tsx
+  main.tsx
+  index.css        # Tailwind import + @theme tokens + base styles
+```
+
+## Section order and anchor IDs (fixed)
+1. `Nav` — floating pill, sticky
+2. `Hero` — `id="top"`
+3. `HowItWorks` — `id="how-it-works"`
+4. `FigmaVsBuild` — `id="figma-vs-build"`
+5. `MendboardsBanner` — `id="mendboards"`
+6. `FounderNote` — `id="why-mend"`
+7. `FinalCta` — `id="waitlist"`
+8. `Footer`
+
+All nav and footer links are in-page anchors with smooth scroll (`scroll-behavior: smooth` on `html`, disabled under `prefers-reduced-motion`). Add `scroll-margin-top` on sections so the sticky nav never covers headings.
+
+There is **no pricing section, no standalone problem section, no testimonials, no logo wall**. Do not add them.
+
+## Locked copy (verbatim — never rewrite, shorten, or "improve")
+All strings go in `src/content/copy.ts`. If Figma text and this file disagree, **this file wins** — flag the mismatch to the user.
+
+### Nav
+- Wordmark: `mend`
+- Links: `How it Works` → #how-it-works · `Figma vs Build` → #figma-vs-build · `Mendboards` → #mendboards
+- Button: `Join the waitlist` → focuses the hero email field (or scrolls to #waitlist on mobile)
+
+### Hero
+- Headline: `Don't just build it. Mend it.`
+- Subline: `Automatically catch your UI bugs before your users do.`
+- Offer: `Get Early Access to Mend + a free UI audit.*`
+- Footnote: `*Free UI audit available to the first 50 only.`
+- Email placeholder: `you@company.com` (always lowercase, everywhere)
+- Button (inside the pill field): `Join the waitlist`
+
+### How it works
+- Headline: `Every flaw, found and fixed.`
+- Scan — title `Scan.` — body `No more checking every screen by hand, Mend crawls your whole app and finds what's off.`
+- Audit — title `Audit.` — body `Review them your way, a table to triage fast, or one card at a time, each with the fix ready.`
+- Ship — title `Ship.` — body `Work through them, verify, and ship your UI complete.`
+  (Do NOT repeat the word "Ship." at the start of the body.)
+
+### Figma vs Build
+- Headline: `Figma on one side. Reality on the other.`
+- Body (below the slider): `What ships should match what you designed. Mend makes sure it does.`
+
+### Mendboards banner
+- Wordmark: `mendboards`
+- Line: `Your whole product, mapped and audited in one canvas.`
+- Prompt: `Be first to try Mendboards`
+- Email placeholder: `you@company.com`
+- Button: `Get it Early`
+- Submissions here are tagged `source: "mendboards"`.
+
+### Founder's note
+- Heading: `Why I'm building Mend`
+- Quote: `I've watched too many designers get torn apart publicly for flaws a tool should've caught in seconds. So I'm building Mend, automated design QA that catches every UI issue before anyone else does.`
+- Name: `Tamim Rizvi`
+- Title: `Founder, Mend`
+
+### Final CTA
+- Headline: `Don't let the next flaw be the one they see.`
+- Subline: `Ship complete, every time, with automated design QA.`
+- Button: `Join the waitlist`
+- Note: `Free UI audit for the first 50.`
+
+### Footer
+- PLATFORM: How it works · Design vs. build · Mendboards · Join the waitlist (all anchors)
+- COMPANY: Why I'm building Mend (#why-mend) · Contact (mailto:admin@mendit.net)
+- CONNECT: LinkedIn · X/Twitter · Email (hrefs = TODO constants in copy.ts)
+- LEGAL: Privacy Policy · Terms (routes `/privacy` and `/terms` — placeholder pages for now; can be static HTML files in `public/`)
+- Giant `mend` wordmark
+- `© 2026 Mend. All rights reserved.`
+
+## Design system
+
+### Source of truth
+1. **Figma (via MCP)** for layout, spacing, sizes, radii, colors, type.
+2. **This file** for copy and behavior.
+Never invent values. If a value is missing from Figma, ask — do not guess.
+
+### Tokens
+Pull exact values with the Figma MCP (`get_variable_defs` on the frame) and define them once in `src/index.css` under `@theme`. Use only tokens in components — **no raw hex values or arbitrary pixel values in JSX** unless Figma has a one-off and you comment why.
+
+Token names to use (fill values from Figma):
+```css
+@theme {
+  /* surfaces */
+  --color-bg:            /* page background (near-black) */;
+  --color-surface:       /* cards/panels: dark charcoal, one step lifted off bg */;
+  --color-surface-2:     /* nested/raised surface */;
+  --color-border:        /* hairline borders on surfaces */;
+  --color-frame:         /* blue section containers behind product visuals */;
+
+  /* text */
+  --color-text:          /* primary text */;
+  --color-text-muted:    /* secondary text */;
+  --color-text-accent:   /* muted blue-grey used in "found and fixed." */;
+
+  /* state colors — RESERVED for issues and fixes only */
+  --color-issue:         /* red: problems, low score */;
+  --color-fixed:         /* green: resolved, high score, checkmarks */;
+  --color-warn:          /* amber issue tags */;
+
+  /* type */
+  --font-sans:           /* from Figma */;
+
+  /* radii, from Figma */
+  --radius-pill:  9999px;
+  --radius-card:  /* from Figma */;
+  --radius-frame: /* from Figma */;
+}
+```
+
+### Rules
+- **Dark cohesion:** every card and panel uses the same surface color, border treatment, and radius family. No colored card backgrounds.
+- **Color is reserved for fixes and issues.** Red/green/amber appear only on issue states, fix states, scores, and tags. Never as decoration.
+- The email field is a **pill with the button inside it** (hero, Mendboards, final CTA share one `EmailCapture` component with variants).
+- Sentence case everywhere except the locked strings above.
+- No gradient washes, no glow blobs, no decorative shadows, no extra eyebrows/labels that aren't in Figma.
+- Body line length ≤ ~70ch.
+
+### Quality floor (non-negotiable)
+- Responsive: test at 375, 768, 1280, 1440, 1920. Desktop is the design target; laptop (1280–1440) must look intentional, not squeezed.
+- Visible keyboard focus on every interactive element (`focus-visible` ring using a token).
+- `prefers-reduced-motion`: all animations resolve to their **final (fixed) state** as a still.
+- Semantic HTML: one `<h1>` (hero headline), `<section>` with `aria-labelledby`, `<nav>`, `<footer>`.
+- Images: explicit `width`/`height`, `loading="lazy"` below the fold, WebP where possible.
+- Lighthouse: aim for 95+ performance and 100 accessibility.
+
+## Motion
+
+### Division of labor
+| Kind | Tool | Used for |
+|---|---|---|
+| Vector component animations | Lottie (`LottieSlot`) | Hero components (button, avatar, user card, payment screen, toggle, chart card), Scan panel, pins |
+| Raster/screen animations | MP4 (`VideoSlot`) | Scan / Audit / Ship screen loops, anything with photos or blur |
+| Web-native interaction | `motion/react` | Nav, Figma-vs-Build slider, button press feedback, the hero highlight sequencer |
+
+The animations are **not built yet**. Build every slot so the asset can be dropped in later without touching layout:
+- Each slot has a fixed aspect ratio matching the Figma frame (no layout shift when the asset loads).
+- Until an asset exists, render the static Figma export (PNG/WebP) of the **broken** state as a placeholder, with a `// TODO(motion): <name>` comment.
+
+### `LottieSlot`
+- Props: `animationData`, `playOnView` (default true), `loop` (default false), `onComplete`, `ariaLabel`.
+- Plays **once** when ≥40% in view, then **rests on the final frame**. Never visibly snaps back to the broken state.
+- Exposes an imperative `play()` (via ref) so a sequencer can trigger it.
+- Reduced motion: jump to last frame, no playback.
+
+### `VideoSlot`
+- `<video muted playsInline preload="metadata" poster=…>` with MP4 (+ WebM source if present).
+- Plays when in view, pauses when out of view. Loops only if the clip's reset is hidden inside a fade (asset responsibility); otherwise plays once and rests.
+- Reduced motion: show the **final-frame poster**, no playback.
+
+### Hero sequencer (spec — build the scaffold now)
+- Components are scattered around the centered headline; the headline is the centerpiece.
+- Sequence: highlight one component at a time (others dim to ~45% opacity), local Mend cursor blips in on it, click-dip, fixes fire ~100ms after the dip, cursor fades, next component highlights. Cross-fade handoffs.
+- Fixes **stay fixed**. Play once on load/view; rest on the fully fixed state.
+- Keep total sequence under ~10s. Small components (button, toggle) ~600–800ms; user card ~2.3s cascade.
+- Implementation: each component is its own `LottieSlot`; the cursor is an HTML element animated with `motion/react`; the sequencer calls each slot's `play()` on cursor arrival.
+
+### Motion quality rules
+- Never linear easing. Default ease: `[0.22, 1, 0.36, 1]`; snaps use a spring with slight overshoot (`type: "spring", stiffness: 400, damping: 28`).
+- Overshoot-and-settle on every fix. Stagger multi-part changes 100–300ms.
+- No scroll-triggered fade-and-slide-up on every section. Motion is spent on the product visuals, not on generic entrances.
+
+### Figma vs Build slider
+- Real component, not a video. Two stacked images (design left, build right) clipped by a draggable divider.
+- Pointer + touch drag, and keyboard: the handle is `role="slider"` with `aria-valuenow`, arrow keys move 5%, Home/End to edges.
+- Starts at 50%. Optional one-time nudge animation on first view to show it's draggable (skipped under reduced motion).
+
+### Mendboards banner
+- Dotted grid background + occasional shooting stars. Implement in CSS (or a tiny canvas) — keep it subtle and cheap; pause when off-screen; static under reduced motion.
+
+## Waitlist
+- No backend. `src/lib/waitlist.ts` exports `submitWaitlist({ email, name?, source })`.
+- Posts to `import.meta.env.VITE_FORMSPREE_ENDPOINT`. If the env var is missing, log a warning and resolve successfully after ~600ms (dev stub) — mark with `// TODO(waitlist): connect Formspree`.
+- `source` is `"hero" | "mendboards" | "final-cta"`.
+- States on `EmailCapture`: idle → submitting (button shows progress, input disabled) → success (inline confirmation replacing the field: "You're on the list.") → error (inline, says what went wrong and how to fix it).
+- Validate email client-side; error copy: "Enter a valid email, like you@company.com."
+- Handle duplicate/already-signed-up as success, not error.
+
+## Working with the Figma MCP
+- The user will paste Figma frame/node links one section at a time. For each:
+  1. `get_design_context` on the node, and `get_screenshot` for visual reference.
+  2. `get_variable_defs` the first time, to populate tokens.
+  3. Implement with the existing tokens and components; extract repeated pieces into `components/ui`.
+  4. Compare your result against the screenshot and list any deviations you couldn't resolve.
+- MCP output is a starting point, not final code: convert absolute positioning to flex/grid, convert fixed widths to responsive layouts, replace generated class soup with tokens.
+- Export raster assets from Figma at 2x, convert to WebP, put them in `src/assets`.
+
+## Do not
+- Do not rewrite or invent copy. Do not add sections.
+- Do not add fake testimonials, fake logos, fake user counts, or screenshots of other people's products or posts.
+- Do not add dependencies beyond the stack without asking.
+- Do not use raw hex/px values in components when a token exists.
+- Do not use `localStorage` for anything important.
+- Do not leave lorem ipsum. Do not leave console errors.
+
+## Known open items (don't block on these)
+- Button labels across CTAs ("Join the waitlist" / "Get it Early") — keep as locked for now; may be unified later.
+- Score naming ("Design health" vs "Mend score") — undecided.
+- Privacy/Terms content — will come from a generator; placeholder pages for now.
+- Social links — TODO constants.
+- Founder photo will be swapped.
