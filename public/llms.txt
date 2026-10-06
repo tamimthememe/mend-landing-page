@@ -1,0 +1,9 @@
+# Mend
+Automated design QA for AI-built apps. Mend crawls a live app, finds UI/UX
+issues, and helps you review and ship them fixed.
+
+## About
+- Product: Mend
+- One-liner: Automated design QA for AI-built apps
+- Status: Pre-launch, waitlist open at https://mendit.net
+- Audience: product designers and founders shipping AI-built apps

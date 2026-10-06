@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page not found · Mend</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0f0f0f" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root {
+        --bg: #0f0f0f;
+        --surface: #18191a;
+        --surface-2: #222425;
+        --border: #222425;
+        --border-secondary: #34393b;
+        --text: #ffffff;
+        --text-muted: #c4c9cb;
+        --text-tertiary: #899297;
+        --warn: #ab8b33;
+        --fixed: #479c65;
+        --radius-pill: 9999px;
+        --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+          sans-serif;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 20px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .dot-grid {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: radial-gradient(
+          circle,
+          rgb(255 255 255 / 0.3) 1px,
+          transparent 1.15px
+        );
+        background-size: 16px 16px;
+        background-repeat: repeat;
+      }
+
+      .dot-grid::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgb(0 0 0 / 0.6);
+      }
+
+      main {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 34rem;
+        text-align: center;
+      }
+
+      .wordmark {
+        margin: 0 0 40px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        color: var(--text);
+      }
+
+      .code {
+        margin: 0 0 20px;
+        font-size: clamp(4.5rem, 18vw, 7.5rem);
+        font-weight: 500;
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        color: var(--text);
+      }
+
+      .issue {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4em;
+        margin: 0 0 28px;
+        padding: 0.4rem 0.85rem;
+        border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--border-secondary));
+        border-radius: var(--radius-pill);
+        background: color-mix(in srgb, var(--warn) 12%, var(--surface));
+        color: var(--warn);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+      }
+
+      .issue::before {
+        content: "";
+        width: 0.4rem;
+        height: 0.4rem;
+        border-radius: 50%;
+        background: var(--warn);
+        flex-shrink: 0;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(1.5rem, 4.5vw, 2rem);
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        color: var(--text);
+      }
+
+      .subline {
+        margin: 0 auto 36px;
+        max-width: 32rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+        color: var(--text-muted);
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.75rem;
+        padding: 0.7rem 1.35rem;
+        border: 0;
+        border-radius: var(--radius-pill);
+        background: var(--fixed);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+        transition:
+          filter 180ms var(--ease),
+          transform 180ms var(--ease);
+      }
+
+      .cta:hover {
+        filter: brightness(1.12);
+      }
+
+      .cta:active {
+        transform: scale(0.98);
+        filter: brightness(0.95);
+      }
+
+      .cta:focus-visible {
+        outline: 2px solid var(--text);
+        outline-offset: 3px;
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        main {
+          animation: rise 400ms var(--ease) both;
+        }
+
+        .cta {
+          animation: settle 520ms var(--ease) 180ms both;
+        }
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes settle {
+        from {
+          box-shadow: 0 0 0 0 color-mix(in srgb, var(--fixed) 0%, transparent);
+          filter: brightness(1.05);
+        }
+        40% {
+          box-shadow: 0 0 28px 2px color-mix(in srgb, var(--fixed) 35%, transparent);
+        }
+        to {
+          box-shadow: 0 0 0 0 color-mix(in srgb, var(--fixed) 0%, transparent);
+          filter: brightness(1);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        main,
+        .cta {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dot-grid" aria-hidden="true"></div>
+    <main>
+      <p class="wordmark">mend</p>
+      <p class="code" aria-hidden="true">404</p>
+      <p class="issue">Issue found · Page not found</p>
+      <h1>Looks like we caught a broken one.</h1>
+      <p class="subline">
+        This page doesn't exist — but that's the kind of thing Mend is built to find. Let's get you
+        back to something that works.
+      </p>
+      <a class="cta" href="/">Back to home</a>
+    </main>
+  </body>
+</html>

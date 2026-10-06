@@ -1,111 +1,185 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,700&family=Manrope:wght@300;400;500;600;700&family=Meow+Script&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600&display=swap");
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+@theme {
+  /* surfaces — Surface/background, Surface/primary, Surface/secondary */
+  --color-bg: #0f0f0f;
+  --color-surface: #18191a;
+  --color-surface-2: #222425;
+  --color-border: #222425;
+  --color-border-secondary: #34393b;
+  --color-frame: #024868;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* text — Text/primary, Text/secondary, Text/brand, Text/tertiary */
+  --color-text: #ffffff;
+  --color-text-muted: #c4c9cb;
+  --color-text-accent: #6791a4;
+  --color-text-tertiary: #899297;
+  --color-text-cream: #e9ebdf;
+  --color-text-nav: #efefe4;
+  --color-footer-label: #b6b8af;
+  --color-footer-rule: rgb(233 235 223 / 12%);
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  /* state colors — reserved for issues and fixes */
+  --color-issue: #d16767;
+  --color-fixed: #479c65;
+  --color-warn: #ab8b33;
+
+  /* Headings on this frame are Manrope. Body/inputs use General Sans.
+     Mendboards wordmark "boards" uses Google Sans Flex (Figma). */
+  --font-sans: "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-boards: "Google Sans Flex", "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-pill: 9999px;
+  --radius-card: 12px;
+  --radius-panel: 32px;
+  --radius-frame: 64px;
+
+  --text-display: 72px;
+  --text-display--line-height: 83px;
+  --text-display--letter-spacing: -2.88px;
+  --text-display--font-weight: 400;
+
+  --text-heading: 48px;
+  --text-heading--line-height: 50.4px;
+  --text-heading--letter-spacing: -0.48px;
+  --text-heading--font-weight: 400;
+
+  --text-subhead: 32px;
+  --text-subhead--line-height: 50.4px;
+  --text-subhead--letter-spacing: -0.48px;
+
+  --text-lead: 24px;
+  --text-lead--line-height: 1.35;
+  --text-lead--letter-spacing: -0.48px;
+
+  --text-body: 20px;
+  --text-body--line-height: 24px;
+
+  --text-nav: 18px;
+  --text-nav--line-height: 28px;
+  --text-nav--letter-spacing: -0.26px;
+
+  --text-small: 16px;
+  --text-small--line-height: 26px;
+
+  --text-fine: 14px;
+  --text-fine--line-height: 26px;
+
+  --spacing-page: 128px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+section[id] {
+  scroll-margin-top: 7.5rem;
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+@media (min-width: 1280px) {
+  section[id] {
+    /* Nav frame is 72px tall. */
+    scroll-margin-top: 72px;
   }
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* Text fields use the pill's focus-within ring instead of a box outline. */
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
+/* Kill Chrome autofill wash — keep field bg empty. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-text);
+  caret-color: var(--color-text);
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  transition: background-color 99999s ease-out;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+}
+
+input::selection,
+textarea::selection {
+  background: color-mix(in srgb, var(--color-frame) 45%, transparent);
+  color: var(--color-text);
 }
 
 body {
   margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.dot-grid {
+  /* CSS tile — the PNG is a 512px single-dot asset that vanishes when
+     crushed to a 16px repeat (contrast collapses to ~1). */
+  background-image: radial-gradient(
+    circle,
+    rgb(255 255 255 / 0.3) 1px,
+    transparent 1.15px
+  );
+  background-size: 16px 16px;
+  background-repeat: repeat;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+@media (min-width: 1921px) {
+  .dot-grid {
+    background-size: 24px 24px;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+.dot-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 0.6);
+  pointer-events: none;
+}
+
+/* Waitlist ticket stub text: vertical on desktop, horizontal under 480px */
+.ticket-stub-text {
+  writing-mode: vertical-rl;
+}
+
+@media (max-width: 479px) {
+  .ticket-stub-text {
+    writing-mode: horizontal-tb;
   }
 }
-p {
+
+dialog.ticket-dialog {
+  background: transparent;
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+dialog.ticket-dialog::backdrop {
+  background: transparent;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-}

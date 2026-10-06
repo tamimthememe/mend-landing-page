@@ -1,0 +1,740 @@
+{
+    "version": 1,
+    "playbackStyle": "loop",
+    "nodes": [
+      {
+        "node": "596:29935",
+        "timelineDurationMs": 13203.13,
+        "fields": [
+          {
+            "field": "motionScaleX@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 0.8999999761581421,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 3809.659,
+                "value": 0.8999999761581421,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4071.659,
+                "value": 1,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5345.284,
+                "value": 1,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5608.284,
+                "value": 0.800000011920929,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": 0.800000011920929
+              }
+            ]
+          },
+          {
+            "field": "motionScaleY@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 0.8999999761581421,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 3809.659,
+                "value": 0.8999999761581421,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4071.659,
+                "value": 1,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5345.284,
+                "value": 1,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5608.284,
+                "value": 0.800000011920929,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": 0.800000011920929
+              }
+            ]
+          },
+          {
+            "field": "opacity@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 80,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 3809.659,
+                "value": 80,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4071.659,
+                "value": 100,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5345.284,
+                "value": 100,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5608.284,
+                "value": 80,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": 80
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "node": "596:29939",
+        "timelineDurationMs": 13203.13,
+        "fields": [
+          {
+            "field": "rectangleTopRightCornerRadius@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 40,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 4809.659,
+                "value": 40,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5214.284,
+                "value": 18,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": 18
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "node": "596:29944",
+        "timelineDurationMs": 13203.13,
+        "fields": [
+          {
+            "field": "stroke[0].color@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 1
+                },
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 4200.659,
+                "value": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 1
+                },
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4287.659,
+                "value": {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1,
+                  "a": 1
+                },
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1,
+                  "a": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "node": "596:29970",
+        "timelineDurationMs": 13203.13,
+        "fields": [
+          {
+            "field": "motionRotation@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 5.3256892156148714e-17,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 3810,
+                "value": 5.3256892156148714e-17,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4322,
+                "value": 5.3256892156148714e-17,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4713.659,
+                "value": -1.5533430576324463,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": -1.5533430576324463
+              }
+            ]
+          },
+          {
+            "field": "motionScaleX@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 1,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 4139,
+                "value": 1,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4201,
+                "value": 0.8500000238418579,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4287,
+                "value": 1,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4717.659,
+                "value": 1,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4779.659,
+                "value": 0.8500000238418579,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5219.284,
+                "value": 0.8500000238418579,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5622.47,
+                "value": 0.9999999403953552,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": 0.9999999403953552
+              }
+            ]
+          },
+          {
+            "field": "motionScaleY@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 1,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 4139,
+                "value": 1,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4201,
+                "value": 0.8500000238418579,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4287,
+                "value": 0.9999999403953552,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4717.659,
+                "value": 1,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4779.659,
+                "value": 0.8500000238418579,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5219.284,
+                "value": 0.8500000238418579,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5622.47,
+                "value": 1,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": 1
+              }
+            ]
+          },
+          {
+            "field": "motionTranslationX@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": -51.736968994140625,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 3810,
+                "value": -51.736968994140625
+              },
+              {
+                "timeMs": 4107,
+                "value": -6.6781463623046875
+              },
+              {
+                "timeMs": 4301,
+                "value": -6.6781463623046875
+              },
+              {
+                "timeMs": 4713.659,
+                "value": 178.37474060058594
+              },
+              {
+                "timeMs": 4779.659,
+                "value": 178.37474060058594
+              },
+              {
+                "timeMs": 5219.284,
+                "value": 184.3418426513672
+              },
+              {
+                "timeMs": 5630.284,
+                "value": 221.48509216308594,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": 221.48509216308594
+              }
+            ]
+          },
+          {
+            "field": "motionTranslationY@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 71.52886199951172,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 3810,
+                "value": 71.52886199951172
+              },
+              {
+                "timeMs": 4107,
+                "value": 30.050853729248047
+              },
+              {
+                "timeMs": 4301,
+                "value": 30.050853729248047
+              },
+              {
+                "timeMs": 4713.659,
+                "value": 2.8511123657226562
+              },
+              {
+                "timeMs": 4779.659,
+                "value": 2.8511123657226562
+              },
+              {
+                "timeMs": 5219.284,
+                "value": -3.44873046875
+              },
+              {
+                "timeMs": 5630.284,
+                "value": -43.24083709716797,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": -43.24083709716797
+              }
+            ]
+          },
+          {
+            "field": "opacity@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 0,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 3813,
+                "value": 0,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4085,
+                "value": 100,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5220.284,
+                "value": 100,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 5633.284,
+                "value": 0,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "node": "596:29978",
+        "timelineDurationMs": 13203.13,
+        "fields": [
+          {
+            "field": "motionRotation@-1:-1",
+            "keyframes": [
+              {
+                "timeMs": 0,
+                "value": 1.0651378431229743e-16,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 3809.659,
+                "value": 1.0651378431229743e-16,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4321.659,
+                "value": 1.0651378431229743e-16,
+                "easingToNext": {
+                  "bezierValues": {
+                    "p1x": 0.5,
+                    "p1y": 0,
+                    "p2x": 0.5,
+                    "p2y": 1
+                  }
+                }
+              },
+              {
+                "timeMs": 4713.318,
+                "value": 1.535889744758606,
+                "easingToNext": {
+                  "hold": true
+                }
+              },
+              {
+                "timeMs": 13203.13,
+                "value": 1.535889744758606
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

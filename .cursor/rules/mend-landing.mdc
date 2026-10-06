@@ -21,6 +21,8 @@ This is a design-QA product: the page itself is the proof of craft. Pixel accura
 - `motion` (Framer Motion) — import from `"motion/react"` — for web-native motion only
 - `lottie-react` — for vector animations exported from After Effects (Bodymovin)
 - Native `<video>` — for raster/PNG animations exported as MP4 (+ WebM when available)
+- `@supabase/supabase-js` — waitlist RPC only
+- `posthog-js` + `@vercel/analytics` — analytics
 - No UI component library. No CSS-in-JS. No state library. No router.
 
 ## Folder structure
@@ -47,7 +49,11 @@ src/
   content/
     copy.ts        # ALL page copy lives here (see Locked copy). Components import from it.
   lib/
-    waitlist.ts    # submit handler (Formspree stub)
+    waitlist.ts    # joinWaitlist → Supabase RPC
+    joined.ts      # localStorage joined flags + useJoined
+    supabase.ts    # browser client (or null)
+    analytics.ts   # PostHog track() wrapper
+    useSectionView.ts
   App.tsx
   main.tsx
   index.css        # Tailwind import + @theme tokens + base styles
@@ -222,13 +228,21 @@ The animations are **not built yet**. Build every slot so the asset can be dropp
 ### Mendboards banner
 - Dotted grid background + occasional shooting stars. Implement in CSS (or a tiny canvas) — keep it subtle and cheap; pause when off-screen; static under reduced motion.
 
-## Waitlist
-- No backend. `src/lib/waitlist.ts` exports `submitWaitlist({ email, name?, source })`.
-- Posts to `import.meta.env.VITE_FORMSPREE_ENDPOINT`. If the env var is missing, log a warning and resolve successfully after ~600ms (dev stub) — mark with `// TODO(waitlist): connect Formspree`.
-- `source` is `"hero" | "mendboards" | "final-cta"`.
-- States on `EmailCapture`: idle → submitting (button shows progress, input disabled) → success (inline confirmation replacing the field: "You're on the list.") → error (inline, says what went wrong and how to fix it).
-- Validate email client-side; error copy: "Enter a valid email, like you@company.com."
-- Handle duplicate/already-signed-up as success, not error.
+## Waitlist & analytics
+- Supabase only via RPC `join_waitlist` — never query waitlist tables directly from the client.
+- `src/lib/supabase.ts` builds a single client from `VITE_SUPABASE_URL` + `VITE_SUPABASE_PUBLISHABLE_KEY` (null + warning if missing).
+- `joinWaitlist({ email, list, source })` in `src/lib/waitlist.ts`:
+  - `list`: `"main" | "mendboards"`
+  - `source`: `"hero" | "mendboards" | "final-cta"`
+  - Trims/lowercases email; returns `invalid_email` without calling the server when invalid.
+  - Sends UTM (`utm_source` / `utm_medium` / `utm_campaign`) captured on first load (module cache + `sessionStorage`) and `document.referrer`.
+  - `"already"` is success. Dev stub (~600ms) when Supabase env is missing.
+- Joined-state keys in `localStorage`: `mend:joined:main`, `mend:joined:mendboards` (`src/lib/joined.ts` + `useJoined`). Hero + final CTA share `main`; Mendboards is independent.
+- Ticket success UI: `TicketModal` — copy lives in `copy.ts` under `ticket` / `emailCapture`.
+- Analytics (`src/lib/analytics.ts`): PostHog via `track(event, props)` only. Events: `section_viewed`, `waitlist_field_focused`, `waitlist_submitted`, `waitlist_joined`, `waitlist_error`, `ticket_shared`, `nav_clicked`, `slider_dragged`. Vercel `<Analytics />` in `App`. No-op when keys are missing. Never identify by email.
+
+## Waitlist (legacy note — superseded)
+- Replaced Formspree. Do not reintroduce `VITE_FORMSPREE_ENDPOINT`.
 
 ## Working with the Figma MCP
 - The user will paste Figma frame/node links one section at a time. For each:
@@ -244,7 +258,7 @@ The animations are **not built yet**. Build every slot so the asset can be dropp
 - Do not add fake testimonials, fake logos, fake user counts, or screenshots of other people's products or posts.
 - Do not add dependencies beyond the stack without asking.
 - Do not use raw hex/px values in components when a token exists.
-- Do not use `localStorage` for anything important.
+- Do not use `localStorage` for anything important except the documented waitlist joined flags (`mend:joined:*`).
 - Do not leave lorem ipsum. Do not leave console errors.
 
 ## Known open items (don't block on these)
