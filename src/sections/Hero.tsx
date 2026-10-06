@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { motion } from 'motion/react'
 import { copy } from '../content/copy.ts'
 import { EmailCapture } from '../components/ui/EmailCapture.tsx'
 import {
@@ -6,6 +7,8 @@ import {
   useHeroLottieSlotStyle,
   type HeroLottieId,
 } from '../components/motion/HeroLottieSequence.tsx'
+import { motionEase } from '../components/motion/heroSequencer.ts'
+import { useReducedMotion } from '../components/motion/useReducedMotion.ts'
 import { useMediaQuery } from '../lib/useMediaQuery.ts'
 import { useSectionView } from '../lib/useSectionView.ts'
 import { HeroUserCard } from './HeroUserCard.tsx'
@@ -310,6 +313,13 @@ export function Hero() {
   useSectionView('top', layerRef)
   const isDesktop = useMediaQuery('(min-width: 1280px)')
   const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1279px)')
+  const reduced = useReducedMotion()
+
+  const intro = {
+    hidden: reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 },
+    show: { opacity: 1, y: 0 },
+  }
+  const introTransition = { duration: reduced ? 0 : 0.55, ease: motionEase }
 
   return (
     <section
@@ -324,34 +334,56 @@ export function Hero() {
         </div>
         {isDesktop ? <DesktopHeroWidgets /> : isTablet ? <TabletHeroDecor /> : <MobileHeroDecor />}
         <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-[1920px] flex-1 items-center px-4 md:px-12 xl:px-0">
-          <div className="relative mx-auto flex w-full max-w-[632px] flex-col items-center text-center">
-            <h1
+          <motion.div
+            className="relative mx-auto flex w-full max-w-[632px] flex-col items-center text-center"
+            initial="hidden"
+            animate="show"
+            transition={{ staggerChildren: reduced ? 0 : 0.1, delayChildren: reduced ? 0 : 0.12 }}
+          >
+            <motion.h1
               id="hero-heading"
+              variants={intro}
+              transition={introTransition}
               className="font-heading text-[36px] leading-[1.15] tracking-[-1.2px] text-text sm:text-[40px] sm:tracking-[-1.6px] md:text-display md:tracking-[-2.88px]"
             >
               {copy.hero.headline.replace(' Mend it.', '')}
               <br />
               Mend it.
-            </h1>
-            <p className="mt-4 font-heading text-[16px] leading-snug font-light text-text-muted sm:text-body md:text-[20px] md:leading-[26px]">
+            </motion.h1>
+            <motion.p
+              variants={intro}
+              transition={introTransition}
+              className="mt-4 font-heading text-[16px] leading-snug font-light text-text-muted sm:text-body md:text-[20px] md:leading-[26px]"
+            >
               {copy.hero.subline}
-            </p>
-            <EmailCapture
-              id="hero-email"
-              list="main"
-              source="hero"
-              placeholder={copy.hero.emailPlaceholder}
-              buttonLabel={copy.hero.button}
-              className="mt-8 w-full"
-            />
-            <p className="mt-2.5 font-heading text-small font-normal text-text-tertiary">
+            </motion.p>
+            <motion.div variants={intro} transition={introTransition} className="mt-8 w-full">
+              <EmailCapture
+                id="hero-email"
+                list="main"
+                source="hero"
+                placeholder={copy.hero.emailPlaceholder}
+                buttonLabel={copy.hero.button}
+                className="w-full"
+              />
+            </motion.div>
+            <motion.p
+              variants={intro}
+              transition={introTransition}
+              className="mt-2.5 font-heading text-small font-normal text-text-tertiary"
+            >
               {copy.hero.offer}
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
-        <p className="relative z-10 px-4 pb-6 text-center font-heading text-fine font-medium text-text-tertiary">
+        <motion.p
+          initial={reduced ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : 0.45, ease: motionEase }}
+          className="relative z-10 px-4 pb-6 text-center font-heading text-fine font-medium text-text-tertiary"
+        >
           {copy.hero.footnote}
-        </p>
+        </motion.p>
       </HeroLottieSequenceProvider>
     </section>
   )

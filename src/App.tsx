@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import { FinalCta } from './sections/FinalCta.tsx'
 import { FigmaVsBuild } from './sections/FigmaVsBuild.tsx'
 import { Footer } from './sections/Footer.tsx'
@@ -6,10 +7,18 @@ import { Hero } from './sections/Hero.tsx'
 import { HowItWorks } from './sections/HowItWorks.tsx'
 import { MendboardsBanner } from './sections/MendboardsBanner.tsx'
 import { Nav } from './sections/Nav.tsx'
+import { motionEase } from './components/motion/heroSequencer.ts'
+import { useReducedMotion } from './components/motion/useReducedMotion.ts'
 
 export default function App() {
+  const reduced = useReducedMotion()
+
   return (
-    <>
+    <motion.div
+      initial={reduced ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: reduced ? 0 : 0.65, ease: motionEase }}
+    >
       <Nav />
       <main>
         <Hero />
@@ -27,6 +36,6 @@ export default function App() {
         </div>
       </main>
       <Footer />
-    </>
+    </motion.div>
   )
 }
