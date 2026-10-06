@@ -1,6 +1,6 @@
 # Cloudflare Workers — static assets from Vite dist/ + thin routing worker.
 # Dashboard "SPA" mode alone was swallowing privacy.html / terms.html.
-name = "mend-landing"
+name = "mend-landing-page"
 main = "./worker.ts"
 compatibility_date = "2025-04-01"
 
