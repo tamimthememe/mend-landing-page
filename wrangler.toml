@@ -1,12 +1,12 @@
-# Cloudflare Workers — static assets from Vite dist/ + thin routing worker.
-# Dashboard "SPA" mode alone was swallowing privacy.html / terms.html.
+# Cloudflare Workers — Vite dist/ as static assets + thin pass-through worker.
 name = "mend-landing-page"
 main = "./worker.ts"
 compatibility_date = "2025-04-01"
 
 [assets]
-# Vite build output (must contain privacy.html + terms.html from public/)
 directory = "./dist"
 binding = "ASSETS"
-# Worker controls fallback — do NOT auto-rewrite every miss to index.html
-not_found_handling = "none"
+# /privacy → privacy.html (200); /privacy.html → 307 /privacy (once)
+html_handling = "auto-trailing-slash"
+# Unmatched navigations → index.html (SPA). Existing files always win first.
+not_found_handling = "single-page-application"
