@@ -1,4 +1,5 @@
-# Clean URLs for static HTML pages (Cloudflare Pages)
+# Clean URLs — used by Cloudflare Pages if you switch.
+# Workers deploy uses worker.ts (ASSETS-first) instead; keep this for Pages compatibility.
 /privacy      /privacy.html      200
 /terms        /terms.html        200
 /animations   /animations.html   200

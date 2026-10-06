@@ -1,0 +1,12 @@
+# Cloudflare Workers — static assets from Vite dist/ + thin routing worker.
+# Dashboard "SPA" mode alone was swallowing privacy.html / terms.html.
+name = "mend-landing"
+main = "./worker.ts"
+compatibility_date = "2025-04-01"
+
+[assets]
+# Vite build output (must contain privacy.html + terms.html from public/)
+directory = "./dist"
+binding = "ASSETS"
+# Worker controls fallback — do NOT auto-rewrite every miss to index.html
+not_found_handling = "none"
