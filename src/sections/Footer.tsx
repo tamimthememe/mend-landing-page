@@ -24,26 +24,20 @@ export function Footer() {
             <ul className="mt-4 border-l border-footer-rule pl-3.5">
               {column.links.map((link) => (
                 <li key={link.label}>
-                  {link.href === 'TODO' ? (
-                    <span className="font-heading text-[16px] leading-[1.4] tracking-[-0.24px] text-text-cream sm:text-[20px] xl:text-lead">
-                      {link.label}
-                    </span>
-                  ) : (
-                    <a
-                      href={link.href}
-                      className="font-heading text-[16px] leading-[1.4] tracking-[-0.24px] text-text-cream opacity-80 transition-opacity hover:opacity-100 focus-visible:opacity-100 active:opacity-100 sm:text-[20px] xl:text-lead"
-                      {...(link.href.startsWith('http')
-                        ? { target: '_blank', rel: 'noopener noreferrer' }
-                        : {})}
-                      onClick={() => {
-                        if (link.href.startsWith('#')) {
-                          track('nav_clicked', { target: link.href })
-                        }
-                      }}
-                    >
-                      {link.label}
-                    </a>
-                  )}
+                  <a
+                    href={link.href}
+                    className="font-heading text-[16px] leading-[1.4] tracking-[-0.24px] text-text-cream opacity-80 transition-opacity hover:opacity-100 focus-visible:opacity-100 active:opacity-100 sm:text-[20px] xl:text-lead"
+                    {...(link.href.startsWith('http')
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                    onClick={() => {
+                      if (link.href.startsWith('#')) {
+                        track('nav_clicked', { target: link.href })
+                      }
+                    }}
+                  >
+                    {link.label}
+                  </a>
                 </li>
               ))}
             </ul>
