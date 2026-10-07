@@ -50,10 +50,20 @@ export const copy = {
   },
   founder: {
     heading: "Why I'm building Mend",
-    quote:
-      "I've watched too many designers get torn apart publicly for flaws a tool should've caught in seconds. So I'm building Mend, automated design QA that catches every UI issue before anyone else does.",
-    name: 'Tamim Rizvi',
-    title: 'Founder, Mend',
+    notes: [
+      {
+        quote:
+          "I've watched too many designers get torn apart publicly for flaws a tool should've caught in seconds. So I'm building Mend, automated design QA that catches every UI issue before anyone else does.",
+        name: 'Tamim Rizvi',
+        title: 'Founder, Mend',
+      },
+      {
+        quote:
+          "Broken UI is the gap between a good idea and a product people trust. Closing that gap is worth everything to me. It's why I'm all in on Mend. This is just the beginning.",
+        name: 'Muhammad Muzammil',
+        title: 'Co-founder, Mend',
+      },
+    ],
   },
   finalCta: {
     headline: "Don't let the next flaw be the one they see.",
