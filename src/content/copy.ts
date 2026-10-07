@@ -89,16 +89,11 @@ export const copy = {
         { label: 'Contact', href: 'mailto:admin@mendit.net' },
       ],
     },
-    /**
-     * TODO: social profile URLs.
-     * The href "TODO" is not a link. Footer renders these as inert text until they are set.
-     */
     connect: {
       label: 'CONNECT',
       links: [
-        { label: 'LinkedIn', href: 'TODO' },
-        { label: 'X/Twitter', href: 'TODO' },
-        { label: 'Email', href: 'TODO' },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/company/mend-designing' },
+        { label: 'Email', href: 'mailto:founder@mendit.net' },
       ],
     },
     legal: {
